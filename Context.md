@@ -41,6 +41,24 @@ GGG replaces the custodian entirely with a dedicated on-chain Soroban escrow con
 | **Player**         | Freighter Wallet (`player.require_auth()`)    | Discovers tournaments (web UI or QR code), connects wallet, joins by paying the entry fee.                                                                                                               | • Calls `join_tournament(player)` transferring entry fee via SAC.<br>• Can call `claim_refund(player)` permissionlessly if cancelled or if deadline expired.<br>• Max cap enforced (`MAX_PLAYERS = 100`).                     |
 | **Platform Admin** | Web Session (Role: `ADMIN`)                   | System-wide governance, dispute escalation, tournament monitoring.                                                                                                                                       | • Outranks `ORGANIZER` in the web application.<br>• Administrative controls are enforced at the web/API layer; contract funds remain strictly locked under contract logic.                                                    |
 
+### 2.1 Standard QA Testnet Wallets & Rules
+
+> [!IMPORTANT]
+> **Network:** Stellar Testnet ONLY.  
+> **Universal Fee Directive for Testing:** **ALL fees must be strictly 1 XLM ONLY** (`10,000,000 stroops`) to all users across all tournament setups, player registrations, and test executions. This is strictly for testing purposes on Testnet.
+
+The dedicated Freighter Testnet wallets configured for end-to-end testing, role authorization, and contract verification:
+
+| Role / Entity | Name | Stellar Testnet Public Address | Primary QA Scope |
+| :--- | :--- | :--- | :--- |
+| **Organizer** | `Organizer1` | `GCND3TIWXXU6R7OE7DEVPKOC4AUAPVFRXQTV6E7MIWEMMNWI6PHY4QXQ` | Tournament creator, contract deployment & initialization, cancellation tests. |
+| **Organizer** | `Organizer2` | `GBHGBR2HXMTI73DZZTI53GDK7F5CXKBWX34TTLEOG5C2BGDJTA5YE2RK` | Secondary organizer for multi-organizer isolation & authorization testing. |
+| **Player** | `Player1` | `GCVNHZ5ETC62BVHJZWDYNRZ5Q5WLWQ3FXXNYF7MNBNW7Q2RIBCBPVO6K` | Player registration (1 XLM), refund claims, 1st place podium winner. |
+| **Player** | `Player2` | `GBLLV6KZ2VOTVG6GCENHQ5FD7SGOVCK6NMO7GFKKJGYSE2M75C56QC44` | Player registration (1 XLM), dynamic prize pool scaling, 2nd place winner. |
+| **Player** | `Player3` | `GBE737HOTAV3RGAXKEZUE5ZLXOLE4O5EWDLZ24FYU4RS24P5F3RMYQQH` | Player registration (1 XLM), multi-participant refund tests, 3rd place winner. |
+| **Referee** | `referee1` | `GAOOTDMZH4IOEO5PBII5PBYZWWNNQ2LYNDHFX2DBVZWYWBGGCSIOFZCF` | Impartial tournament referee, match verification, `finalize_results()` signing. |
+| **Referee** | `referee2` | `GDDINMRDLF4RNGRPA5OEG7W4KJ5J4V2GVVDNWMBYFEFBWFPL7QGAPXUY` | Secondary referee for unauthorized settlement checks (`TC-REF-003`) & role collision tests. |
+
 ---
 
 ## 3. Financial Mechanics & Math Model
@@ -210,6 +228,12 @@ c:\Testing\
      - Color-coded status badges (`PASS` in soft green fill, `FAIL` in soft red fill, `BLOCKED` in soft yellow/orange).
      - Auto-adjusted column widths and gridlines enabled.
 4. **Context Synchronization:** Cross-reference newly added test cases, strategies, or automated execution runs with [`Context.md`](file:///c:/Testing/Context.md) to ensure all contract logic, role invariants, and error codes stay strictly aligned with the GGG specification.
+5. **Deliverable Sprints as GitHub Issues:** For every deliverable (e.g., Deliverable 1 / Sprint 1), create a dedicated GitHub Issue in the repository to track the sprint. The issue must include:
+   - Deliverable title, objective, target environment (`https://app.ggg.quest`), Stellar network (`Testnet`), and Soroban contract hash.
+   - The complete test case checklist formatted with markdown task checkboxes (`- [ ] {Test Case ID}: {Scenario}`) and severity designations.
+   - Acceptance criteria and pass/fail gates.
+   - Live execution tracking: As automated testing runs and functions are verified, update the issue checkboxes (`- [x]`) to mark items as passed/failed, and post an execution summary comment linking the Excel report and evidence artifacts.
+   - **Sprint Completion & Issue Closure:** For every sprint that is completed (all deliverable functions tested, 100% pass criteria verified, and reports published), the GitHub Issue MUST be updated with the final execution status and then **closed** (`State: CLOSED`) with a closing completion summary.
 
 ### 7.3 Document Design & Visual Styling Standards (Basis: `GGG_D1_Test_Cases.docx`)
 
