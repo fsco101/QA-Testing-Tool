@@ -22,7 +22,7 @@ if sys.stdout.encoding != 'utf-8':
     except Exception:
         pass
 
-DATE_STR = "2026-09-10"
+DATE_STR = sys.argv[1] if len(sys.argv) > 1 else "2026-09-11"
 REPORTS_DIR = os.path.join(r"c:\Testing\reports", DATE_STR)
 EVIDENCE_DIR = os.path.join(REPORTS_DIR, "evidence")
 TEST_CASES_DIR = os.path.join(r"c:\Testing\Test Cases", DATE_STR)
