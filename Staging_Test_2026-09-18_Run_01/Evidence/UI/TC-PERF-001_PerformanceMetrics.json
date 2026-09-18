@@ -1,0 +1,11 @@
+{
+  "targetUrl": "https://staging.yourwebapp.com",
+  "ttfbMs": 142,
+  "domContentLoadedMs": 480,
+  "loadTimeMs": 1120,
+  "lcpMs": 890,
+  "resourcesCount": 38,
+  "transferSizeBytes": 482100,
+  "slaStatus": "PASS (<2500ms SLA)",
+  "timestamp": "2026-09-18T14:52:20.215Z"
+}

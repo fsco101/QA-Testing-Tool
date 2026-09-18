@@ -1,114 +1,172 @@
-# GGG QA & Automation Testing Suite
+# Universal Web Application QA & Test Automation Framework
 
-> Comprehensive QA Test Engineering, Soroban Smart Contract Verification, and Test Automation for the **Good Game Guild (GGG)** decentralized tournament escrow protocol on the **Stellar Network**.
-
----
-
-## 📌 Project Overview
-
-**GGG (Good Game Guild)** is a trustless, decentralized tournament prize-escrow and match-settlement protocol built on the Stellar network using Soroban smart contracts. This repository houses the QA automation framework, test case specifications, sprint tracking, on-chain execution runners, and Excel report generators.
-
-- **Target Staging Web App:** [https://app.ggg.quest](https://app.ggg.quest)
-- **Live Landing Page:** [https://ggg.quest](https://ggg.quest)
-- **Primary Network:** Stellar Testnet (Soroban Protocol 28)
-- **Escrow WASM Hash:** `9319ccbb7148750882df1cf735162059afe017778c9af37984304f291d5fe702`
-- **Authoritative Specification:** [`Context.md`](./Context.md)
-- **Testing Guidelines:** [`Automation Testing Script.md`](./Automation%20Testing%20Script.md)
+> **Enterprise-Grade Quality Assurance, E2E Browser Automation, API Contract Validation, and Audit-Ready Reporting for Modern Web Applications.**
 
 ---
 
-## ⚙️ Universal QA Testing Directives
+## 📌 1. Purpose of this System
 
-1. **Network Constraint:** All testing is executed on **Stellar Testnet ONLY**. Mainnet is strictly out of scope.
-2. **Universal Testing Fee Directive:** **ALL fees must be strictly 1 XLM ONLY** (`10,000,000 stroops`) across all tournament setups, player registrations, and test executions.
-3. **Sprint Tracking as GitHub Issues:** For every deliverable, a dedicated GitHub Issue is created containing the complete test case checklist (`- [ ]`), which is updated in real-time (`- [x]`) upon automated verification.
-4. **Standardized Excel Reports:** Every test run outputs a formal spreadsheet under `reports/{YYYY-MM-DD}/D{N}_Reports_{Date}.xlsx` with Executive Summary, Granular Execution Logs, and Defects Triage.
+The **Universal Web Application QA & Test Automation Framework** is an end-to-end testing, verification, and defect-reporting platform designed to evaluate any web application deployed to staging, UAT, preview, or production environments. 
 
----
+### Why this Framework Exists
+Modern web applications consist of tightly coupled layers: dynamic browser interfaces (SPAs/SSRs), REST/GraphQL APIs, background workers, third-party services (payment processors, transactional email, webhooks), and multi-tiered role authorization. Traditional testing often fragments these layers, leading to missed edge cases, visual defects, broken integrations, and untracked bugs.
 
-## 👥 Standard QA Testnet Wallet Roster
-
-All test workflows utilize 7 dedicated Testnet accounts derived via standard SEP-0005 derivation paths (`m/44'/148'/{0..6}'`):
-
-| Role | Name | Stellar Testnet Public Address | Derivation Path | QA Scope |
-| :--- | :--- | :--- | :--- | :--- |
-| **Organizer** | `Organizer1` | `GCND3TIWXXU6R7OE7DEVPKOC4AUAPVFRXQTV6E7MIWEMMNWI6PHY4QXQ` | `m/44'/148'/0'` | Tournament creation, contract deployment, cancellation |
-| **Player** | `Player1` | `GCVNHZ5ETC62BVHJZWDYNRZ5Q5WLWQ3FXXNYF7MNBNW7Q2RIBCBPVO6K` | `m/44'/148'/1'` | 1 XLM join, 1st place podium winner, refund claim |
-| **Referee** | `referee1` | `GAOOTDMZH4IOEO5PBII5PBYZWWNNQ2LYNDHFX2DBVZWYWBGGCSIOFZCF` | `m/44'/148'/2'` | Standings certification, `finalize_results()` signing |
-| **Player** | `Player2` | `GBLLV6KZ2VOTVG6GCENHQ5FD7SGOVCK6NMO7GFKKJGYSE2M75C56QC44` | `m/44'/148'/3'` | 1 XLM join, dynamic pot scaling, 2nd place winner |
-| **Organizer** | `Organizer2` | `GBHGBR2HXMTI73DZZTI53GDK7F5CXKBWX34TTLEOG5C2BGDJTA5YE2RK` | `m/44'/148'/4'` | Multi-organizer isolation, authorization checks |
-| **Referee** | `referee2` | `GDDINMRDLF4RNGRPA5OEG7W4KJ5J4V2GVVDNWMBYFEFBWFPL7QGAPXUY` | `m/44'/148'/5'` | Unauthorized settlement tests, role collision checks |
-| **Player** | `Player3` | `GBE737HOTAV3RGAXKEZUE5ZLXOLE4O5EWDLZ24FYU4RS24P5F3RMYQQH` | `m/44'/148'/6'` | 1 XLM join, multi-participant refund tests, 3rd place winner |
+This framework solves these challenges by providing:
+1. **A Unified QA Operating System:** Combines human QA analytical rigor with automated browser testing (Playwright), API health assertions, WCAG accessibility scans, and performance profiling.
+2. **Dual-Layer Verification (UI + Non-UI):** Verifies both visible frontend behaviors and external system side-effects (e.g. database persistence, payment provider sandbox records, email delivery, webhook payloads).
+3. **Audit-Ready Deliverables:** Automatically organizes run evidence into timestamped folders (`Staging_Test_{Date}_Run_{N}/`), generates standardized multi-tab Excel reports (`.xlsx`), and maintains strict defect traceability.
+4. **Plug-and-Play Adaptability:** Decoupled from any single proprietary project. By configuring the **Target Web Application System Configuration & Links** section in [`Context.md`](./Context.md), this suite instantly adapts to test any target web application.
+5. **AI-Assisted Autonomous QA:** Pre-configured with specialized QA agent skills to allow AI coding assistants to conduct exploratory testing, capture screenshot proof, and triage defects without touching production source code.
 
 ---
 
-## 📂 Repository Directory Structure
+## 🧠 2. Senior QA Analyst Skills & Testing Disciplines
+
+This framework embeds the core competencies and methodologies of a Senior QA Analyst / QA Lead:
 
 ```text
-c:\Testing\
-├── Context.md                         # Authoritative QA context, role specs, and math models
-├── Automation Testing Script.md       # Staging testing guidelines, mechanisms, and rules
-├── Deliverable/                       # Deliverable source files from product / sprint specs
-│   └── GGG_D1_Test_Cases.docx         # Deliverable 1 master test cases (21 test vectors)
-├── Test Strategy/                     # Test Strategies & High-Level Plans
-│   └── {YYYY-MM-DD}/                  # Subfolder per creation date (e.g., 2026-09-08/)
-│       └── 1_GGG_Deliverable_1_Test_Strategy.docx
-├── Test Cases/                        # Test Cases & Step-by-Step Execution Suites
-│   └── {YYYY-MM-DD}/                  # Subfolder per run date (e.g., 2026-09-10/)
-│       ├── 1_GGG_D1_Test_Cases_Executed.docx
-│       └── 1_GGG_D1_Test_Cases_Executed.docx.md
-├── reports/                           # Automation Test Execution Reports & Metrics
-│   └── {YYYY-MM-DD}/                  # Subfolder per run date (e.g., 2026-09-10/)
-│       ├── D1_Reports_{Date}.xlsx     # Standardized Excel report (Executive Summary, Details, Defects)
-│       ├── onchain_testnet_evidence.json # Live Stellar Testnet transaction hashes
-│       └── evidence/                  # Captured UI screenshots and test proof files
-├── scripts/                           # Automated test runners & blockchain scripts
-│   ├── d1_automation_runner.py        # 21-vector invariant test runner & Excel generator
-│   ├── testnet_cli_runner.js          # Live Stellar Testnet transaction CLI suite
-│   ├── derive_mnemonic.js             # SEP-0005 key derivation utility
-│   └── check_soroban_rpc.js           # Testnet RPC health and ledger status checker
-└── .agents/skills/                    # Soroban smart contract and Stellar dApp agent skills
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                     UNIVERSAL WEB APP QA TESTING TAXONOMY                       │
+├───────────────────────────────┬─────────────────────────────────────────────────┤
+│ 1. Functional & Exploratory   │ Heuristic analysis, boundary values, edge cases │
+│ 2. E2E UI Test Automation     │ Playwright browser flows, multi-role contexts   │
+│ 3. API & Contract Validation  │ REST/GraphQL, schema contracts, HTTP codes      │
+│ 4. Non-UI Staging Proof       │ Payment sandboxes, email inboxes, webhooks      │
+│ 5. Multi-Role RBAC Security   │ Privilege escalation prevention, route guards   │
+│ 6. Accessibility (a11y)       │ WCAG 2.1/2.2 AA audits, axe-core integration    │
+│ 7. Performance & Latency      │ Core Web Vitals (LCP, CLS, TTFB, DOM load)      │
+│ 8. Cross-Browser & Responsive │ Chromium, WebKit, Firefox, mobile viewports     │
+│ 9. Defect Triage & Isolation  │ Repro steps, console logs, severity scoring     │
+│ 10. Audit-Ready Reporting     │ Multi-sheet Excel dashboards, evidence indices  │
+└───────────────────────────────┴─────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🚀 Running the Automated Test Suites
+## 🎯 3. How to Connect Your Web App System
 
-### 1. Invariant Verification & Full Report Generation (Python)
-Executes all 21 Deliverable 1 test vectors, verifies Soroban contract invariants, generates the standardized Excel report, and produces updated Word/Markdown test case execution logs:
+You can point this framework to your web application in three simple steps:
 
+### Step 1: Configure [`Context.md`](./Context.md)
+Open [`Context.md`](./Context.md) and fill in the **Target Web Application System Configuration & Links** table:
+```markdown
+| Parameter | Configuration / URL |
+| :--- | :--- |
+| **Primary Staging URL** | https://staging.yourdomain.com |
+| **Authentication URL** | https://staging.yourdomain.com/login |
+| **API Base URL** | https://api-staging.yourdomain.com/v1 |
+| **API Docs / Swagger** | https://api-staging.yourdomain.com/docs |
+```
+Define your user roles (Admin, Manager, User) and list your application's **Critical User Journeys (CUJs)**.
+
+### Step 2: Set Environment Credentials (`.env`)
+Create or update your local `.env` file with target URLs and test credentials:
+```env
+WEB_APP_BASE_URL="https://staging.yourdomain.com"
+API_BASE_URL="https://api-staging.yourdomain.com/v1"
+TEST_ADMIN_EMAIL="qa-admin@yourdomain.com"
+TEST_ADMIN_PASSWORD="YourSecureStagingPassword123!"
+TEST_USER_EMAIL="qa-user@yourdomain.com"
+TEST_USER_PASSWORD="YourSecureStagingPassword123!"
+```
+
+### Step 3: Run the Test Suites
+Run the automated runners or use the provided Playwright scripts to execute tests, capture screenshots, and generate reports.
+
+---
+
+## 🛠️ 4. Automated Script Suite Inventory
+
+The [`scripts/`](./scripts) directory contains modular, production-ready QA tools:
+
+| Script | Engine | Description & Scope |
+| :--- | :--- | :--- |
+| **`playwright_ui_runner.js`** | Playwright (Node.js) | Executes automated end-to-end browser journeys against the deployed staging URL. Captures full-page screenshots with strict naming (`TC-{MODULE}-{ID}_{INDEX}.png`). Supports isolated browser contexts per user role. |
+| **`api_health_checker.js`** | Axios (Node.js) | Validates API endpoint reachability, HTTP response status codes, payload contracts, and response latency thresholds. |
+| **`accessibility_audit.js`** | Axe-Core (Node.js) | Audits key application routes against WCAG 2.1 Level AA accessibility standards, generating actionable violation reports. |
+| **`performance_profiler.js`** | Playwright (Node.js) | Measures Core Web Vitals and load timings: TTFB, DOMContentLoaded, LCP, and total network asset payloads. |
+| **`excel_report_generator.py`** | OpenPyXL (Python) | Compiles test execution results into an executive spreadsheet with a KPI Summary Dashboard, Detailed Test Execution Log, and Defect Triage tracker. |
+| **`evidence_packager.py`** | Python | Validates the current testing run directory, verifies that all screenshots referenced in test cases exist, and creates an automated run manifest. |
+
+---
+
+## 🚀 5. Quick Start & Execution Commands
+
+### Prerequisites
+- Node.js (v18+)
+- Python (v3.9+) with `openpyxl`
+- Playwright browsers installed: `npx playwright install`
+
+### Install Dependencies
 ```bash
-python scripts/d1_automation_runner.py
+npm install
+pip install openpyxl
 ```
 
-- **Output Excel Report:** `reports/2026-09-10/D1_Reports_2026-09-10.xlsx`
-- **Output Executed Docs:** `Test Cases/2026-09-10/1_GGG_D1_Test_Cases_Executed.docx`
-
-### 2. Live On-Chain Stellar Testnet CLI Execution (Node.js)
-Executes real on-chain Testnet transactions with the 7 official wallets using `@stellar/stellar-sdk` and the **1 XLM** universal testing rule:
-
+### Execute Test Suites
 ```bash
-# Verify credentials and execute live Testnet transactions
-node scripts/testnet_cli_runner.js
+# 1. Run E2E UI journeys with automatic screenshot capture
+npm run test:ui
+
+# 2. Run API endpoint health and contract checks
+npm run test:api
+
+# 3. Run automated WCAG 2.1 AA accessibility audit
+npm run audit:a11y
+
+# 4. Measure Core Web Vitals and page speed
+npm run profile:perf
+
+# 5. Generate standardized Excel report from execution logs
+npm run report:excel
+
+# 6. Package and validate run evidence
+npm run package:run
 ```
 
-**Verified Testnet Transactions:**
-- **Player 1 Deposit (1.0 XLM):** [Tx 009b09b4... (Ledger 4597310)](https://stellar.expert/explorer/testnet/tx/009b09b4849e40d5c336cca330b6211779e653330fa58f593c3bd37e519e7906)
-- **Player 2 Deposit (1.0 XLM):** [Tx 62837cd0... (Ledger 4597311)](https://stellar.expert/explorer/testnet/tx/62837cd0602815db7aee722275547e2a405b2d888c6f99c28bbf097e868bcb7f)
-- **Player 3 Deposit (1.0 XLM):** [Tx 9b1f969b... (Ledger 4597312)](https://stellar.expert/explorer/testnet/tx/9b1f969bf06950572bd243d9e8deb18da2ee86809863ae44801f8a815837a520)
-- **Refund Settlement (1.0 XLM):** [Tx ab02b57e... (Ledger 4597313)](https://stellar.expert/explorer/testnet/tx/ab02b57e4c2f4aa7817376ab6402f3adf1575b1a8e0e066168f2e7a003144c0c)
+---
+
+## 📂 6. Repository Directory Structure
+
+```text
+qa-testing-tool/
+├── Context.md                         # Authoritative QA context, AUT URLs, roles, and architecture
+├── README.md                          # Framework overview, purpose, and operating instructions
+├── Automation Testing Script.md       # Universal staging testing rules, classifications, and guidelines
+├── package.json                       # QA runner dependencies & npm scripts
+├── Deliverable/                       # Master test case templates and sprint deliverables
+│   └── Master_Web_App_Test_Cases_Template.md
+├── scripts/                           # Modular automation and report generation scripts
+│   ├── playwright_ui_runner.js        # E2E browser runner & screenshot capturer
+│   ├── api_health_checker.js          # REST/GraphQL endpoint health and contract checker
+│   ├── accessibility_audit.js         # Axe-core WCAG 2.1 AA accessibility auditor
+│   ├── performance_profiler.js        # Page speed & Core Web Vitals profiler
+│   ├── excel_report_generator.py      # Standardized multi-sheet Excel report generator
+│   └── evidence_packager.py           # Evidence organizer and run packaging validator
+├── .agents/skills/                    # Specialized AI agent skills for QA automation
+│   └── web-app-qa-automation/
+│       └── SKILL.md                   # Autonomous QA agent protocol & guidelines
+└── Staging_Test_{YYYY-MM-DD}_Run_{N}/ # Created automatically per testing run
+    ├── Updated_Staging_Test_Cases.xlsx # Filled execution matrix
+    ├── Applicability_Record.md        # Classification log (UI vs Non-UI vs Local)
+    ├── Defects_Report.md              # Detailed bug tickets
+    └── Evidence/
+        ├── UI/                        # Screenshots (TC-{MODULE}-{ID}_{INDEX}.png)
+        └── Non_UI/                    # API payloads, external sandbox proofs
+```
 
 ---
 
-## 📊 Deliverable 1 Status Summary
+## 🔒 7. Universal QA Directives & Golden Rules
 
-| Scope | Total Vectors | Status | Pass Rate | GitHub Sprint Issue |
-| :--- | :--- | :--- | :--- | :--- |
-| **Deliverable 1: Deadline-Enforced Escrow** | **21 Test Cases** | **PASSED** | **100.0%** | [#1 — Sprint 1 Execution](https://github.com/fsco101/QA-Testing-Tool/issues/1) |
+1. **Deploy Staging Only:** Tests must target the live, deployed staging environment. Never test against `localhost` or local developer harnesses.
+2. **Strictly QA-Only (No Code Tampering):** Never edit application source code, alter database schemas, or attempt to fix bugs directly. Discover, isolate, document, and report bugs.
+3. **Preserve Test Case Format:** Never reformat or redesign provided client test case templates. Populate the provided columns (`Status`, `Actual Result`, `Evidence`, `Remarks`) directly.
+4. **UI vs. Non-UI Separation:** Maintain clear separation between browser UI actions and external verification sources (APIs, webhooks, payment sandboxes).
+5. **Traceable Evidence:** Every marked test case must link to an evidence file existing in the same run folder. No unsupported assertions.
+6. **Protect Shared Staging Data:** Use dedicated test accounts, unique timestamps, and idempotent data to avoid polluting staging environments.
 
 ---
 
-## 🔒 Security & Privacy Notice
-
-- **Public Addresses (`G...`):** Safe to share, documented in `Context.md` and this README.
-- **Secret Keys (`S...`) & Mnemonic:** Strictly confidential. Stored exclusively in local `.env` and guarded by `.gitignore`. Never committed to remote repositories.
+## 📄 License & Attribution
+Maintained by the Quality Assurance & Test Engineering Team. Open for adaptation across modern web engineering stacks.

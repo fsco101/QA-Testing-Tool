@@ -1,7 +1,33 @@
 {
+  "name": "qa-testing-tool",
+  "version": "2.0.0",
+  "description": "Universal Quality Assurance and Automation Testing Suite for Web Applications",
+  "main": "scripts/playwright_ui_runner.js",
+  "scripts": {
+    "test:ui": "node scripts/playwright_ui_runner.js",
+    "test:api": "node scripts/api_health_checker.js",
+    "audit:a11y": "node scripts/accessibility_audit.js",
+    "profile:perf": "node scripts/performance_profiler.js",
+    "report:excel": "python scripts/excel_report_generator.py",
+    "package:run": "python scripts/evidence_packager.py"
+  },
+  "keywords": [
+    "qa",
+    "testing",
+    "automation",
+    "playwright",
+    "api-testing",
+    "accessibility",
+    "performance",
+    "excel-reports"
+  ],
+  "author": "Quality Assurance Team",
+  "license": "ISC",
   "dependencies": {
-    "@stellar/stellar-sdk": "^17.0.1",
-    "bip39": "^3.1.0",
-    "ed25519-hd-key": "^2.0.0"
+    "@axe-core/playwright": "^4.10.1",
+    "@playwright/test": "^1.50.1",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "exceljs": "^4.4.0"
   }
 }

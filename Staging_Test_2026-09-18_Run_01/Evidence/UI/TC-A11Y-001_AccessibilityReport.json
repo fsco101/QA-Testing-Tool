@@ -1,0 +1,9 @@
+{
+  "targetUrl": "https://staging.yourwebapp.com",
+  "standard": "WCAG 2.1 Level AA",
+  "violationsCount": 0,
+  "passesCount": 24,
+  "incompleteCount": 1,
+  "violations": [],
+  "timestamp": "2026-09-18T14:52:18.209Z"
+}

@@ -1,0 +1,17 @@
+{
+  "runDirectory": "C:\\Testing\\Staging_Test_2026-09-18_Run_01",
+  "timestamp": "2026-09-18T22:52:55.359676",
+  "uiEvidenceCount": 5,
+  "nonUiEvidenceCount": 1,
+  "uiFiles": [
+    "TC-A11Y-001_AccessibilityReport.json",
+    "TC-AUTH-001_LoginScreen.png",
+    "TC-NAV-001_NavigationMenu.png",
+    "TC-PERF-001_PerformanceMetrics.json",
+    "TC-UI-001_LandingPage.png"
+  ],
+  "nonUiFiles": [
+    "TC-API-001_HealthResponse.json"
+  ],
+  "status": "VALIDATED"
+}

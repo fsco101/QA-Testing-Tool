@@ -429,33 +429,28 @@ Also include the **applicability record** for removed local/unit-only cases eith
 
 ---
 
-## Appendix: Operational Context for GGG (Stellar Testnet Escrow)
+## Appendix: Operational Guidelines for Web Application Staging
 
-When executing tests against the **Good Game Guild (GGG)** decentralized escrow staging deployment, align operations with these project-specific specifications:
+When executing tests against a target web application staging deployment, align operations with these universal specifications:
 
 ### 1. Staging Target Endpoints
-* **Web App Staging:** [https://app.ggg.quest](https://app.ggg.quest)
-* **Landing & Info:** [https://ggg.quest](https://ggg.quest)
-* **Network:** Stellar Testnet (Soroban Protocol 28)
-* **Escrow WASM Contract Hash:** `9319ccbb7148750882df1cf735162059afe017778c9af37984304f291d5fe702`
+* Read primary URLs and credentials directly from [`Context.md`](./Context.md) and `.env`.
+* Verify that target staging endpoints are reachable before commencing full execution.
 
-### 2. Universal Testing Fee Directive
-* **Strict Rule:** ALL fees must be strictly **1 XLM ONLY** (`10,000,000 stroops`) across all tournament setups, player entry registrations, and refund test executions.
+### 2. Multi-Role Browser Contexts
+Utilize Playwright isolated browser contexts (`browser.newContext()`) for each test persona:
+* **Admin Context:** Super Administrator / elevated permissions.
+* **Manager Context:** Organization / department manager permissions.
+* **Standard User Context:** Primary user workflows.
+* **Guest Context:** Unauthenticated user session.
 
-### 3. Role-Based Browser Contexts
-Utilize Playwright isolated browser contexts (`browser.newContext()`) corresponding to the standard QA Testnet wallet roster:
-* **Organizer Context:** `Organizer1` (`GCND3TIWXXU6R7OE7DEVPKOC4AUAPVFRXQTV6E7MIWEMMNWI6PHY4QXQ`)
-* **Referee Context:** `referee1` (`GAOOTDMZH4IOEO5PBII5PBYZWWNNQ2LYNDHFX2DBVZWYWBGGCSIOFZCF`)
-* **Player Contexts:**
-  * `Player1` (`GCVNHZ5ETC62BVHJZWDYNRZ5Q5WLWQ3FXXNYF7MNBNW7Q2RIBCBPVO6K`)
-  * `Player2` (`GBLLV6KZ2VOTVG6GCENHQ5FD7SGOVCK6NMO7GFKKJGYSE2M75C56QC44`)
-  * `Player3` (`GBE737HOTAV3RGAXKEZUE5ZLXOLE4O5EWDLZ24FYU4RS24P5F3RMYQQH`)
-
-### 4. Non-UI Staging Evidence Sources
+### 3. Non-UI Staging Evidence Sources
 Capture externally traceable evidence for Non-UI staging operations via:
-* **Stellar Expert Testnet Explorer:** `https://stellar.expert/explorer/testnet/tx/{tx_hash}`
-* **Stellar Horizon Testnet API:** `https://horizon-testnet.stellar.org/transactions/{tx_hash}`
-* **Soroban RPC Testnet Endpoint:** `https://soroban-testnet.stellar.org`
+* **Staging REST/GraphQL API:** Endpoint status, response time, and JSON schema proofs.
+* **Payment Sandboxes:** Stripe / PayPal test mode transaction records and receipts.
+* **Transactional Email Sandboxes:** Mailtrap / InBucket inbox captures confirming delivery of reset tokens, receipts, and alerts.
+* **Webhook Receivers:** Payload inspection logs verifying event dispatch and HTTP 200 ACKs.
 
-### 5. Local Simulators vs. Staging Evidence
-Internal simulators (e.g. `EscrowTestSimulator` in local test runners) are developer harnesses used for code-level invariant checking and **must not** be used as evidence for deployed staging verification. Only live staging web interactions and Stellar Testnet transactions are valid staging proof.
+### 4. Local Test Harnesses vs. Staging Evidence
+Local mocking libraries, in-memory databases, and developer unit harnesses must **not** be substituted for deployed staging verification. Only live staging web interactions, API responses, and external provider sandbox transactions are valid staging proof.
+
